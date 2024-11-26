@@ -1,0 +1,167 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: linear-gradient(to bottom right, #EEFFEE, #ffffff, #c9f2c9);
+    color: #282B29;
+}
+
+.upload-container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #c9f2c9;
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+.navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #282B29;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links span {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.login-btn {
+    font-family: Georgia, serif;
+    background-color: #94F2CE;
+    color: #282B29;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+/* Main Content */
+.upload-content {
+    margin: 30px auto;
+}
+
+.upload-heading, .upload-subheading {
+    font-size: 28px;
+    color: #282B29;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+/* Input Fields */
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.input-label {
+    background-color: #96A39B;
+    color: white;
+    padding: 10px 20px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.input-box {
+    background-color: #EEFFEE;
+    border: 1px solid #96A39B;
+    padding: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-family: Georgia, serif;
+    width: 300px;
+}
+
+/* Upload Box */
+.upload-box {
+    background-color: #EEFFEE;
+    border: 1px solid #94F2CE;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.upload-instructions {
+    font-size: 16px;
+    color: #282B29;
+    margin-bottom: 10px;
+}
+
+.code-editor {
+    background-color: #d9d9d9;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+    font-size: 14px;
+    color: #555;
+    position: relative;
+}
+
+.line-number {
+    color: #999;
+    margin-right: 10px;
+}
+
+.placeholder-text {
+    color: #777;
+}
+
+/* Buttons */
+.upload-btn {
+    background-color: #94F2CE;
+    color: #282B29;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px auto;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    display: block;
+}
+
+/* Footer */
+.footer {
+    background-color: #94F2CE;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer p {
+    font-size: 16px;
+}
+
+.social-link {
+    color: #282B29;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    text-decoration: underline;
+}

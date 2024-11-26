@@ -1,18 +1,14 @@
 import React from 'react';
+import Navbar from './NavBar'
 import './HomePage.css';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+     const navigate = useNavigate();
     return (
         <div className="container">
-            <nav className="navbar">
-                <img src="logo.png" alt="Logo" className="navbar-logo" />
-                <span className="navbar-title">SpecBot</span>
-                <div className="navbar-links">
-                    <span>About</span>
-                    <span>Contact</span>
-                    <button className="login-btn">Login</button>
-                </div>
-            </nav>
+
+            <Navbar />
 
             <div className="content">
                 <h1 className="heading">Accelerate your Code's Performance with SpecBot!</h1>
@@ -20,7 +16,7 @@ const HomePage = () => {
                 <p className="description">
                     Optimize your software's performance by automatically converting sequential code into efficient, parallelized solutions based on your hardware specifications.
                 </p>
-                <button className="get-started-btn">Get Started</button>
+                <button className="get-started-btn"   onClick={() => navigate('/upload')}>Get Started</button>
 
                 <h2 className="subheading">Why use SpecBot?</h2>
                 <ul className="features">

@@ -1,0 +1,161 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: linear-gradient(to bottom right, #EEFFEE, #ffffff, #c9f2c9);
+    color: #282B29;
+}
+
+/* Container */
+.login-container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #c9f2c9;
+}
+
+.navbar-logo {
+    height: 40px;
+}
+
+.navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #282B29;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-links span {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.login-btn {
+    font-family: Georgia, serif;
+    background-color: #94F2CE;
+    color: #282B29;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+/* Main Content */
+.login-content {
+    margin: 30px auto;
+}
+
+.login-heading {
+    font-size: 28px;
+    color: #282B29;
+    font-weight: bold;
+}
+
+/* Login Box */
+.login-box {
+    background-color: #EEFFEE;
+    border: 1px solid #94F2CE;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+.premium-text {
+    font-size: 18px;
+}
+
+.join-now-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Input Fields */
+.login-input {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #96A39B;
+    border-radius: 5px;
+    background-color: #DEF1E5;
+    font-family: Georgia, serif;
+    font-size: 16px;
+}
+
+/* Buttons */
+.forgot-password-btn {
+    background-color: #899289;
+    color: #282B29;
+    border: none;
+    padding: 8px 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: Georgia, serif;
+}
+
+.login-submit-btn {
+    background-color: #94F2CE;
+    color: #282B29;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px auto;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    display: block;
+}
+
+/* Social Icons */
+.signup-text {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.social-icons {
+    margin: 10px auto;
+}
+
+.social-icon {
+    width: 40px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    background-color: #94F2CE;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer p {
+    font-size: 16px;
+}
+
+.social-link {
+    color: #282B29;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    text-decoration: underline;
+}
