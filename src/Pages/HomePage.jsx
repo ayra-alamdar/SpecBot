@@ -1,29 +1,50 @@
-import React from 'react';
-import Navbar from './NavBar'
+import React, { useEffect, useState } from 'react';
+import Navbar from './NavBar';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
+import { auth } from './firebase-config';
 
 const HomePage = () => {
-     const navigate = useNavigate();
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+
+    // Check if the user is logged in
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe(); // Cleanup on unmount
+    }, []);
+
     return (
         <div className="container">
-
-            <Navbar />
-
+            <Navbar user={user} />
             <div className="content">
                 <h1 className="heading">Accelerate your Code's Performance with SpecBot!</h1>
                 <div className="video-placeholder">Video Placeholder</div>
                 <p className="description">
                     Optimize your software's performance by automatically converting sequential code into efficient, parallelized solutions based on your hardware specifications.
                 </p>
-                <button className="get-started-btn"   onClick={() => navigate('/upload')}>Get Started</button>
+                {/* If there's no user, show Login button */}
+                {!user ? (
+                    <div>
+                        <p>Before Get started, Login with your credentials</p>
+                        <button className="get-started-btn" onClick={() => navigate('/login')}>
+                            Login
+                        </button>
+                    </div>
+                ) : (
+                    <button className="get-started-btn" onClick={() => navigate('/upload')}>
+                        Get Started
+                    </button>
+                )}
 
                 <h2 className="subheading">Why use SpecBot?</h2>
                 <ul className="features">
-                    <li>-> Automates code parallelization for C/C++</li>
-                    <li>-> Enhances code performance for specific hardware setups</li>
-                    <li>-> Easy integration with Visual Studio Code</li>
-                    <li>-> Works for computationally intensive tasks</li>
+                    <li> 1. Automates code parallelization for C/C++</li>
+                    <li> 2. Enhances code performance for specific hardware setups</li>
+                    <li> 3.Easy integration with Visual Studio Code</li>
+                    <li> 4. Works for computationally intensive tasks</li>
                 </ul>
 
                 <div className="promo-box">

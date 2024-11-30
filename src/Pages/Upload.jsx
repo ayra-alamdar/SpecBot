@@ -1,19 +1,51 @@
 import React from 'react';
 import './Upload.css';
+import Navbar from './NavBar';
+import { useState, useEffect } from 'react';
+import { auth } from './firebase-config';
 
 const UploadFilesPage = () => {
+    const [coreType, setCoreType] = useState('');
+    const [ramType, setRamType] = useState('');
+    const [code, setCode] = useState('');
+    const [user, setUser] = useState(null);
+
+    const handleUpload = async () => {
+        const payload = {
+            coreType,
+            ramType,
+            code,
+        }
+        try {
+            const response = await fetch('http://localhost:5000/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            })
+            if (response.ok) {
+                alert('File uploaded successfully!');
+            }
+            else {
+                alert('Failed to upload the file.');
+            }
+        }
+        catch (error) {
+            console.error('Error uploading file:', error);
+            alert('An error occurred. Please try again.');
+        }
+    };
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+            setUser(currentUser);
+        });
+        return () => unsubscribe(); // Cleanup on unmount
+    }, []);
     return (
         <div className="upload-container">
             {/* Header */}
-            <nav className="navbar">
-                <img src="logo.png" alt="Logo" className="navbar-logo" />
-                <span className="navbar-title">SpecBot</span>
-                <div className="navbar-links">
-                    <span>About</span>
-                    <span>Contact</span>
-                    <button className="login-btn">Login</button>
-                </div>
-            </nav>
+            <Navbar user={user} />
 
             {/* Main Content */}
             <div className="upload-content">
@@ -46,14 +78,19 @@ const UploadFilesPage = () => {
                     <p className="upload-instructions">
                         Convert your serial code into a parallel one to improve your code’s performance
                     </p>
-                    <div className="code-editor">
-                        <span className="line-number">1</span>
-                        <span className="placeholder-text">Paste your code here</span>
-                    </div>
+                    {/* Code Editor Section */}
+                    <textarea
+                        className="code-editor"
+                        placeholder="Paste or type your code here"
+                        value={code}  // Bind the textarea value to the state
+                        onChange={(e) => setCode(e.target.value)}  // Update the state on change
+                        rows="10"  // Adjust the size of the textarea
+                    ></textarea>
                 </div>
 
                 {/* Upload Button */}
-                <button className="upload-btn">Upload</button>
+                <button className="upload-btn" onClick={handleUpload}>Upload</button>
+
             </div>
 
             {/* Footer */}
