@@ -7,13 +7,20 @@ import { auth } from './firebase-config';
 const UploadFilesPage = () => {
     const [coreType, setCoreType] = useState('');
     const [ramType, setRamType] = useState('');
+    const [processorsCount, setProcessorsCount] = useState('');
     const [code, setCode] = useState('');
     const [user, setUser] = useState(null);
 
     const handleUpload = async () => {
+        // Get the values from the input fields
+        const coreType = document.querySelector('.input-box-Core').value;
+        const ramType = document.querySelector('.input-box-RAM').value;
+        const processorsCount = document.querySelector('.input-box-processor').value;
+
         const payload = {
             coreType,
             ramType,
+            processorsCount,
             code,
         }
         try {
@@ -42,6 +49,42 @@ const UploadFilesPage = () => {
         });
         return () => unsubscribe(); // Cleanup on unmount
     }, []);
+
+    // on Click of the Auto Retrieve Button get the Hardware Information of the User
+    const handleAutoRetrieve = async () => {
+        // Get hardware information using the navigator API
+        const userAgent = navigator.userAgent;
+        let CPUType = "Unknown";
+
+        if (userAgent.includes("Win64") || userAgent.includes("WOW64")) {
+            CPUType = "64-bit";
+        } else if (userAgent.includes("Win32") || userAgent.includes("WOW32")) {
+            CPUType = "32-bit";
+        }
+        const hardwareConcurrency = navigator.hardwareConcurrency; // Number of logical processors
+
+        // Get total RAM in GB (approximation)
+        const totalRAM = (navigator.deviceMemory || 0).toFixed(2); // Convert to GB
+
+        // Output the details
+        console.log(`CPU Type: ${CPUType}`);
+        console.log(`Number of Logical Processors: ${hardwareConcurrency}`);
+        console.log(`Total RAM: ${totalRAM} GB`);
+
+        // Set the state
+        setCoreType(`${hardwareConcurrency}`);
+        setRamType(totalRAM);
+
+        // placing values on the input fields
+        document.querySelector('.input-box-Core').value = `${CPUType}`;
+        document.querySelector('.input-box-processor').value = `${hardwareConcurrency}`;
+        document.querySelector('.input-box-RAM').value = `${totalRAM} GB`;
+
+
+        // Display the information to the user
+        // alert(`Number of Logical Processors: ${hardwareConcurrency}\nTotal RAM: ${totalRAM} GB`);
+    };
+
     return (
         <div className="upload-container">
             {/* Header */}
@@ -52,13 +95,20 @@ const UploadFilesPage = () => {
                 {/* Heading */}
                 <h1 className="upload-heading">Fill in the following information:</h1>
 
+                {/* Hardware Information Section */}
+
+                {/* Automatic Reterival of Hardware Information */}
+                <button className="auto-retrieve-btn"
+                onClick={handleAutoRetrieve}
+                >Auto Retrieve</button>
+
                 {/* Core Type */}
                 <div className="input-group">
                     <div className="input-label">Core Type</div>
                     <input
                         type="text"
                         placeholder="enter the type of core of your hardware"
-                        className="input-box"
+                        className="input-box-Core"
                     />
                 </div>
 
@@ -68,7 +118,16 @@ const UploadFilesPage = () => {
                     <input
                         type="text"
                         placeholder="enter the type of RAM of your hardware"
-                        className="input-box"
+                        className="input-box-RAM"
+                    />
+                </div>
+                                {/* Number of Processors*/}
+                <div className="input-group">
+                    <div className="input-label">RAM Type</div>
+                    <input
+                        type="text"
+                        placeholder="enter the nu,ber of processors in your cpu"
+                        className="input-box-processor"
                     />
                 </div>
 
