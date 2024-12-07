@@ -23,7 +23,13 @@ const HomePage = () => {
         <h1 className="heading">
           Accelerate your Code's Performance with SpecBot!
         </h1>
-        <div className="video-placeholder">Video Placeholder</div>
+
+        <div className="video-placeholder">
+          <video className="video-demo" controls width="80%" src="./BG.mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
         <p className="description">
           Optimize your software's performance by automatically converting
           sequential code into efficient, parallelized solutions based on your

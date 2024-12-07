@@ -1,5 +1,5 @@
 .upload-container {
-  font-family: Arial, sans-serif;
+  font-family: Georgia, serif;
   padding: 20px;
   background-color: #eaf7ea;
 }
@@ -19,53 +19,70 @@
 .hardware-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center; /* Centers the content horizontally */
+  gap: 10px;
   margin-bottom: 30px;
 }
 
 .hardware-input {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: center; /* Vertically centers content */
+  justify-content: center; /* Centers each row horizontally */
+  gap: 5px;
 }
 
 .label {
+  font-family: Georgia, serif;
   font-weight: bold;
   color: #2d5939;
-  flex: 1;
-  text-align: left;
+  background-color: #c4d6c4;
+  padding: 16px;
+  border-radius: 5px;
+  text-align: center;
+  width: 220px; /* Adjusted width for label */
 }
 
 .input-display {
-  flex: 4;
+  flex: 1; /* Allows flexibility in sizing */
+  display: flex;
+  justify-content: flex-start; /* Aligns grey-box to the left */
 }
 
 .grey-box {
   background-color: #c4d6c4;
-  padding: 27px;
+  padding: 10px;
+  width: 300px; /* Matches label width */
   border-radius: 5px;
-  position: relative;
+  font-family: Georgia, serif;
 }
 
 .white-box {
   background-color: #ffffff;
-  padding: 10px;
+  padding: 8px;
   border-radius: 5px;
-  width: 60%;
-  text-align: left;
+  width: 98%;
+  text-align: left; /* Aligns text to the left inside the box */
+  font-family: Georgia, serif;
+}
+
+/* Additional centering for the parent container */
+.content {
+  margin: 20px auto; /* Centers the content horizontally on the page */
+  text-align: center; /* Centers text within the container */
 }
 
 .auto-retrieve-btn {
+  font-family: Georgia, serif;
   background-color: #2d5939;
   color: white;
-  padding: 10px 15px;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .auto-retrieve-btn:hover {
-  background-color: #1f4d29;
+  background-color: #4f855a;
 }
 
 .code-section {

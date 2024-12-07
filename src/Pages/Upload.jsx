@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Upload.css";
 import Navbar from "./NavBar";
 import { auth } from "./firebase-config";
+import axios from "axios";
 
 const UploadFilesPage = () => {
   const [coreType, setCoreType] = useState("");
@@ -26,9 +27,25 @@ const UploadFilesPage = () => {
     setProcessorsCount(hardwareConcurrency);
     setRamType(`${totalRAM} GB`);
   };
-
+  const handleSubmit = () => {
+    // Implement the code to upload the codeInput to the backend
+    console.log("Code Input: ", codeInput);
+    const data = {
+      core_type: coreType,
+      ram_type: ramType,
+      code: codeInput,
+    };
+    axios
+      .post("http://localhost:5000/upload", data)
+      .then((response) => {
+        console.log("Response: ", response);
+      })
+      .catch((error) => {
+        console.error("Error: ", error);
+      });
+  };
   return (
-    <div className="upload-container">
+    <div className="upload-container" style={{ fontFamily: "Georgia, serif" }}>
       <Navbar user={user} />
       <div className="content">
         <h1 className="heading">Fill in the Following Information:</h1>
@@ -101,6 +118,9 @@ const UploadFilesPage = () => {
               disabled
             />
           </div>
+          <button className="upload-btn" onClick={handleSubmit}>
+            Upload
+          </button>
         </div>
       </div>
       <div>
