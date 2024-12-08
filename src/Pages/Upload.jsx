@@ -9,6 +9,7 @@ const UploadFilesPage = () => {
   const [ramType, setRamType] = useState("");
   const [processorsCount, setProcessorsCount] = useState("");
   const [codeInput, setCodeInput] = useState("");
+  const [parallelizedCode, setParallelizedCode] = useState(""); // State for parallelized code
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -27,9 +28,8 @@ const UploadFilesPage = () => {
     setProcessorsCount(hardwareConcurrency);
     setRamType(`${totalRAM} GB`);
   };
+
   const handleSubmit = () => {
-    // Implement the code to upload the codeInput to the backend
-    console.log("Code Input: ", codeInput);
     const data = {
       core_type: coreType,
       ram_type: ramType,
@@ -39,11 +39,17 @@ const UploadFilesPage = () => {
       .post("http://localhost:5000/upload", data)
       .then((response) => {
         console.log("Response: ", response);
+        console.log("Response of Pcode: ", response.data.Pcode);
+        if (response.data && response.data.Pcode) {
+          setParallelizedCode(response.data.Pcode); // Update the parallelized code state
+
+        }
       })
       .catch((error) => {
         console.error("Error: ", error);
       });
   };
+
   return (
     <div className="upload-container" style={{ fontFamily: "Georgia, serif" }}>
       <Navbar user={user} />
@@ -110,10 +116,17 @@ const UploadFilesPage = () => {
           </div>
           <div className="code-editor">
             <div className="line-numbers">
-              <div className="line-number">1</div>
+              {Array.from({
+                length: (parallelizedCode.match(/\n/g) || []).length + 1,
+              }).map((_, index) => (
+                <div key={index} className="line-number">
+                  {index + 1}
+                </div>
+              ))}
             </div>
             <textarea
               className="code-input"
+              value={parallelizedCode} // Display the parallelized code
               placeholder="Your parallelized code will be here"
               disabled
             />
