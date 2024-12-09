@@ -28,7 +28,7 @@ const UploadFilesPage = () => {
     setProcessorsCount(hardwareConcurrency);
     setRamType(`${totalRAM} GB`);
   };
-
+ 
   const handleSubmit = () => {
     const data = {
       core_type: coreType,
@@ -42,7 +42,6 @@ const UploadFilesPage = () => {
         console.log("Response of Pcode: ", response.data.Pcode);
         if (response.data && response.data.Pcode) {
           setParallelizedCode(response.data.Pcode); // Update the parallelized code state
-
         }
       })
       .catch((error) => {
