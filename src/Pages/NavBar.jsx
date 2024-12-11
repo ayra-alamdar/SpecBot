@@ -7,13 +7,13 @@ const NavBar = ({ user }) => {
 
   return (
     <nav className="navbar">
-      <img src="logo192.png" alt="Logo" className="navbar-logo" />
-      <span className="navbar-title" onClick={() => navigate("/")}>
-        SpecBot
-      </span>
+      <div className="navbar-left">
+        <img src="specbot-logo.png" alt="Logo" className="navbar-logo" />
+        <span className="navbar-title" onClick={() => navigate("/")}>
+          SpecBot
+        </span>
+      </div>
       <div className="navbar-links">
-        <span onClick={() => navigate("/about")}>About</span>
-        <span onClick={() => navigate("/contact")}>Contact</span>
         {user ? (
           // Display the avatar when user is logged in
           <div className="avatar" title={user.email}>

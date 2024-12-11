@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./Login.css";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { auth, googleProvider, githubProvider } from "./firebase-config";
-import githublogo from "./github-logo.jpg";
-import googleLogo from "./google-logo.png";
 import {
   signInWithPopup,
   signInWithEmailAndPassword,
@@ -80,78 +79,81 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <NavBar />
-      <div className="login-content">
-        <h1>{isSignup ? "Sign Up for SpecBot!" : "Log In to SpecBot!"}</h1>
-        <div className="login-box">
-          {error && <p className="error-message">{error}</p>}
-          {isSignup && (
+      <div className="content-wrapper">
+        <div className="login-content">
+          <h1>{isSignup ? "Sign Up for SpecBot!" : "Log In to SpecBot!"}</h1>
+          <div className="login-box">
+            {error && <p className="error-message">{error}</p>}
+            {isSignup && (
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                className={`login-input ${
+                  !formData.name && error ? "input-error" : ""
+                }`}
+                onChange={handleChange}
+                aria-label="Name"
+              />
+            )}
             <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
               className={`login-input ${
-                !formData.name && error ? "input-error" : ""
+                !formData.email && error ? "input-error" : ""
               }`}
               onChange={handleChange}
-              aria-label="Name"
+              aria-label="Email"
             />
-          )}
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            className={`login-input ${
-              !formData.email && error ? "input-error" : ""
-            }`}
-            onChange={handleChange}
-            aria-label="Email"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            className={`login-input ${
-              !formData.password && error ? "input-error" : ""
-            }`}
-            onChange={handleChange}
-            aria-label="Password"
-          />
-          <button
-            className="login-submit-btn"
-            onClick={handleEmailAuth}
-            disabled={isLoading}
-          >
-            {isLoading ? "Processing..." : isSignup ? "Sign Up" : "Log In"}
-          </button>
-          <p>Or {isSignup ? "sign up" : "log in"} using:</p>
-          <div className="social-icons">
-            <img
-              src={googleLogo}
-              alt="Sign in with Google"
-              className="social-icon"
-              onClick={() => handleOAuth(googleProvider)}
-              role="button"
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              className={`login-input ${
+                !formData.password && error ? "input-error" : ""
+              }`}
+              onChange={handleChange}
+              aria-label="Password"
             />
-            <img
-              src={githublogo}
-              alt="Sign in with GitHub"
-              className="social-icon"
-              onClick={() => handleOAuth(githubProvider)}
-              role="button"
-            />
-          </div>
-          <p>
-            {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
-            <span
-              className="toggle-link"
-              onClick={() => setIsSignup(!isSignup)}
-              role="button"
+            <button
+              className="login-submit-btn"
+              onClick={handleEmailAuth}
+              disabled={isLoading}
             >
-              {isSignup ? "Log In" : "Sign Up"}
-            </span>
-          </p>
+              {isLoading ? "Processing..." : isSignup ? "Sign Up" : "Log In"}
+            </button>
+            <p>Or {isSignup ? "sign up" : "log in"} using:</p>
+            <div className="social-icons">
+              <img
+                src="/google-logo.png"
+                alt="Sign in with Google"
+                className="social-icon"
+                onClick={() => handleOAuth(googleProvider)}
+                role="button"
+              />
+              <img
+                src="/github-logo.jpg"
+                alt="Sign in with GitHub"
+                className="social-icon"
+                onClick={() => handleOAuth(githubProvider)}
+                role="button"
+              />
+            </div>
+            <p>
+              {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
+              <span
+                className="toggle-link"
+                onClick={() => setIsSignup(!isSignup)}
+                role="button"
+              >
+                {isSignup ? "Log In" : "Sign Up"}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

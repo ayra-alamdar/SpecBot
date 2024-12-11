@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./NavBar";
+import Footer from "./Footer";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase-config";
@@ -19,88 +20,88 @@ const HomePage = () => {
   return (
     <div className="container">
       <Navbar user={user} />
-      <div className="content">
-        <h1 className="heading">
-          Accelerate your Code's Performance with SpecBot!
-        </h1>
+      <div className="content-wrapper">
+        <div className="content">
+          <div className="heading-hp">
+            Accelerate your Code's Performance with SpecBot!
+          </div>
 
-        <div className="video-placeholder">
-          <video className="video-demo" controls width="80%" src="./BG.mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
+          <div className="bg-vid">
+            <video className="video-demo" controls width="100%" src="./BG.mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
-        <p className="description">
-          Optimize your software's performance by automatically converting
-          sequential code into efficient, parallelized solutions based on your
-          hardware specifications.
-        </p>
-        {!user ? (
-          <div>
-            <p>Before Get started, Login with your credentials</p>
+          <p className="description">
+            Optimize your software's performance by automatically converting
+            sequential code into efficient, parallelized solutions based on your
+            hardware specifications.
+          </p>
+          {!user ? (
+            <div className="login-cred">
+              <p>Before we get started, Login with your credentials</p>
+              <button
+                className="get-started-btn"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+            </div>
+          ) : (
             <button
               className="get-started-btn"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/upload")}
             >
-              Login
+              Get Started
+            </button>
+          )}
+
+          <h2 className="subheading">Why use SpecBot?</h2>
+          <ul className="features">
+            <li> 1. Automates code parallelization for C/C++</li>
+            <li> 2. Enhances code performance for specific hardware setups</li>
+            <li> 3. Easy integration with Visual Studio Code</li>
+            <li> 4. Works for computationally intensive tasks</li>
+          </ul>
+
+          <div className="promo-box">
+            <h3>Get Started today for</h3>
+            <h2>FREE!</h2>
+            <p>Join us in making coding more efficient</p>
+            <button
+              className="try-free-btn"
+              onClick={() => navigate("/upload")}
+            >
+              Try for Free
             </button>
           </div>
-        ) : (
-          <button
-            className="get-started-btn"
-            onClick={() => navigate("/upload")}
-          >
-            Get Started
-          </button>
-        )}
 
-        <h2 className="subheading">Why use SpecBot?</h2>
-        <ul className="features">
-          <li> 1. Automates code parallelization for C/C++</li>
-          <li> 2. Enhances code performance for specific hardware setups</li>
-          <li> 3. Easy integration with Visual Studio Code</li>
-          <li> 4. Works for computationally intensive tasks</li>
-        </ul>
+          <h2 className="extension-heading">
+            Representation as an extension on Visual Studio Code
+          </h2>
+          <div className="demo-video">
+            <video
+              className="demo"
+              controls
+              width="80%"
+              src="./Ext_working.mp4"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
-        <div className="promo-box">
-          <h3>Get Started today for</h3>
-          <h2>FREE!</h2>
-          <p>Join us in making coding more efficient</p>
-          <button className="try-free-btn" onClick={() => navigate("/upload")}>
-            Try for Free
-          </button>
+          <h2 className="flow-heading">Our Flow Diagram</h2>
+          <div className="image-placeholder">
+            <img
+              className="flow-diagram"
+              src="./WorkFlow.png"
+              alt="Flow Diagram"
+            />
+          </div>
         </div>
-
-        <h2 className="extension-heading">
-          Representation as an extension on Visual Studio Code
-        </h2>
-        <div className="video-demo-placeholder">Video Demo Placeholder</div>
-
-        <h2 className="flow-heading">Our Flow Diagram</h2>
-        <div className="image-placeholder">Image Placeholder</div>
       </div>
 
-      <footer className="footer">
-        <a href="#" className="social-link youtube">
-          YouTube
-        </a>
-        <a href="#" className="social-link facebook">
-          Facebook
-        </a>
-        <a href="#" className="social-link gmail">
-          Gmail
-        </a>
-        <a href="#" className="social-link linkedin">
-          LinkedIn
-        </a>
-        <a href="#" className="social-link instagram">
-          Instagram
-        </a>
-        <a href="#" className="social-link github">
-          GitHub
-        </a>
-        <p>Copyright © 2024 SpecBot</p>
-      </footer>
+      <Footer />
     </div>
   );
 };
