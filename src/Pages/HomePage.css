@@ -8,7 +8,7 @@
 body {
   font-family: "Arial", sans-serif;
   color: #333; /* Retaining the original color for text */
-  background: linear-gradient(to bottom right, #eeffee, #ffffff, #c9f2c9);
+  background: linear-gradient(to bottom right, #eeffee, #ffffff, #c0fac0);
   line-height: 1.6;
   font-size: 16px;
 }
