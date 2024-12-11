@@ -4,6 +4,7 @@ import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { auth } from "./firebase-config";
 import axios from "axios";
+import { CopyButton } from '@lobehub/ui';
 
 const UploadFilesPage = () => {
   const [coreType, setCoreType] = useState("");
@@ -34,6 +35,7 @@ const UploadFilesPage = () => {
     const data = {
       core_type: coreType,
       ram_type: ramType,
+      processors_count: processorsCount,
       code: codeInput,
     };
     axios
@@ -56,6 +58,13 @@ const UploadFilesPage = () => {
 
   const calculateLineNumbers = () => {
     return (codeInput.match(/\n/g) || []).length + 1;
+  };
+
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(parallelizedCode).then(() => {
+      alert('Copied to clipboard');
+    });
   };
 
   return (
@@ -127,22 +136,24 @@ const UploadFilesPage = () => {
               />
             </div>
             <div className="code-editor">
-              <div className="line-numbers">
-                {Array.from({
-                  length: (parallelizedCode.match(/\n/g) || []).length + 1,
-                }).map((_, index) => (
-                  <div key={index} className="line-number">
-                    {index + 1}
-                  </div>
-                ))}
-              </div>
-              <textarea
-                className="code-input"
-                value={parallelizedCode} // Display the parallelized code
-                placeholder="Your parallelized code will be here"
-                disabled
-              />
+            <div className="line-numbers">
+              {Array.from({
+                length: (parallelizedCode.match(/\n/g) || []).length + 1,
+              }).map((_, index) => (
+                <div key={index} className="line-number">
+                  {index + 1}
+                </div>
+              ))}
             </div>
+            <textarea
+              className="code-input"
+              value={parallelizedCode} // Display the parallelized code
+              placeholder="Your parallelized code will be here"
+              readOnly // Allow copying but prevent editing
+              />
+            <CopyButton onClick={copyToClipboard} />
+          </div>
+
           </div>
         </div>
         <button className="upload-btn" onClick={handleSubmit}>
