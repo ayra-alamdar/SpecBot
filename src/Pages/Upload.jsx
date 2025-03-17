@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import for navigation
 import "./Upload.css";
 import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { auth } from "./firebase-config";
 import axios from "axios";
-import { CopyButton } from '@lobehub/ui';
 
 const UploadFilesPage = () => {
   const [coreType, setCoreType] = useState("");
   const [ramType, setRamType] = useState("");
   const [processorsCount, setProcessorsCount] = useState("");
   const [codeInput, setCodeInput] = useState("");
-  const [parallelizedCode, setParallelizedCode] = useState(""); // State for parallelized code
+  const [parallelizedCode, setParallelizedCode] = useState("");
   const [user, setUser] = useState(null);
+
+  const navigate = useNavigate(); // Hook for navigation
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
@@ -42,29 +44,23 @@ const UploadFilesPage = () => {
       .post("http://localhost:5000/upload", data)
       .then((response) => {
         console.log("Response: ", response);
-        console.log("Response of Pcode: ", response.data.Pcode);
         if (response.data && response.data.Pcode) {
-          setParallelizedCode(response.data.Pcode); // Update the parallelized code state
+          setParallelizedCode(response.data.Pcode);
+
+          // Navigate to the new page and pass parallelizedCode
+          navigate("/parallel-code", {
+            state: {
+              parallelizedCode: response.data.Pcode,
+              codeInput: codeInput
+            }
+
+
+          })
         }
       })
       .catch((error) => {
         console.error("Error: ", error);
       });
-  };
-
-  const handleCodeChange = (e) => {
-    setCodeInput(e.target.value);
-  };
-
-  const calculateLineNumbers = () => {
-    return (codeInput.match(/\n/g) || []).length + 1;
-  };
-
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(parallelizedCode).then(() => {
-      alert('Copied to clipboard');
-    });
   };
 
   return (
@@ -84,9 +80,13 @@ const UploadFilesPage = () => {
               <div className="label">Core Type</div>
               <div className="input-display">
                 <div className="grey-box">
-                  <div className="white-box">
-                    {coreType || "Enter Core Type"}
-                  </div>
+                  <input
+                    className="white-box"
+                    type="text"
+                    value={coreType}
+                    onChange={(e) => setCoreType(e.target.value)}
+                    placeholder="Enter Core Type"
+                  />
                 </div>
               </div>
             </div>
@@ -95,7 +95,13 @@ const UploadFilesPage = () => {
               <div className="label">RAM Type</div>
               <div className="input-display">
                 <div className="grey-box">
-                  <div className="white-box">{ramType || "Enter RAM Type"}</div>
+                  <input
+                    className="white-box"
+                    type="text"
+                    value={ramType}
+                    onChange={(e) => setRamType(e.target.value)}
+                    placeholder="Enter RAM Type"
+                  />
                 </div>
               </div>
             </div>
@@ -104,18 +110,22 @@ const UploadFilesPage = () => {
               <div className="label">Number of Processors</div>
               <div className="input-display">
                 <div className="grey-box">
-                  <div className="white-box">
-                    {processorsCount || "Enter Number of Processors"}
-                  </div>
+                  <input
+                    className="white-box"
+                    type="number"
+                    value={processorsCount}
+                    onChange={(e) => setProcessorsCount(e.target.value)}
+                    placeholder="Enter Number of Processors"
+                  />
                 </div>
               </div>
             </div>
+
           </div>
 
           <h1 className="heading1">Upload your files here:</h1>
           <div className="heading-sub">
-            Convert your serial code into a parallel one to improve your code's
-            performance
+            Convert your serial code into a parallel one to improve your code's performance
           </div>
           <div className="code-section">
             <div className="code-editor">
@@ -135,30 +145,12 @@ const UploadFilesPage = () => {
                 placeholder="Paste your code here..."
               />
             </div>
-            <div className="code-editor">
-            <div className="line-numbers">
-              {Array.from({
-                length: (parallelizedCode.match(/\n/g) || []).length + 1,
-              }).map((_, index) => (
-                <div key={index} className="line-number">
-                  {index + 1}
-                </div>
-              ))}
-            </div>
-            <textarea
-              className="code-input"
-              value={parallelizedCode} // Display the parallelized code
-              placeholder="Your parallelized code will be here"
-              readOnly // Allow copying but prevent editing
-              />
-            <CopyButton onClick={copyToClipboard} />
           </div>
 
-          </div>
+          <button className="upload-btn" onClick={handleSubmit}>
+            Upload
+          </button>
         </div>
-        <button className="upload-btn" onClick={handleSubmit}>
-          Upload
-        </button>
       </div>
       <Footer />
     </div>
