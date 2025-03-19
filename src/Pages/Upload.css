@@ -7,6 +7,7 @@
 
 /* Main Page Container */
 .page-container {
+  background-image: url("../../public/background.png");
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -113,7 +114,9 @@
   font-weight: 600;
   font-size: large;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow */
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .auto-retrieve-btn:hover {
@@ -192,7 +195,9 @@ textarea {
   margin-top: 20px;
   margin-bottom: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   font-size: 1rem; /* Slightly larger for better readability */
 }
 

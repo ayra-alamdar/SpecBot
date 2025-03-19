@@ -1,0 +1,58 @@
+/* About Us Page Styles */
+.about-container {
+  margin-top: 100px;
+  text-align: center;
+  padding: 20px;
+  font-family: Georgia, serif;
+  background: linear-gradient(to bottom right, #eeffee, #ffffff, #c9f2c9);
+  color: #282b29;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url("../../public/background.png");
+}
+
+.about-content {
+  /* background-image: url("../../public/background.png"); */
+  max-width: 800px;
+  margin: 30px auto;
+  background-color: #eeffee;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #94f2ce;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 28px;
+  color: #282b29;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 22px;
+  color: #282b29;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #282b29;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #def1e5;
+  border-radius: 5px;
+  border: 1px solid #96a39b;
+}

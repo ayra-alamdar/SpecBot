@@ -108,7 +108,7 @@ const ParallelCodePage = ({ user }) => {
 
 
     return (
-        <div className="page-container">
+        <div className="page-container-pcode">
             <Navbar user={user} />
             <div className="filter-section">
                 <h2>Filters</h2>

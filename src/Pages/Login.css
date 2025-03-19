@@ -20,6 +20,7 @@ body {
 
 /* Container */
 .login-container {
+  background-image: url("../../public/background.png");
   display: flex;
   flex-direction: column;
   min-height: 100vh;

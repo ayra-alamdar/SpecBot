@@ -51,11 +51,9 @@ const UploadFilesPage = () => {
           navigate("/parallel-code", {
             state: {
               parallelizedCode: response.data.Pcode,
-              codeInput: codeInput
-            }
-
-
-          })
+              codeInput: codeInput,
+            },
+          });
         }
       })
       .catch((error) => {
@@ -77,7 +75,7 @@ const UploadFilesPage = () => {
 
           <div className="hardware-section">
             <div className="hardware-input">
-              <div className="label">Core Type</div>
+              <div className="label">OS Type</div>
               <div className="input-display">
                 <div className="grey-box">
                   <input
@@ -85,7 +83,7 @@ const UploadFilesPage = () => {
                     type="text"
                     value={coreType}
                     onChange={(e) => setCoreType(e.target.value)}
-                    placeholder="Enter Core Type"
+                    placeholder="Enter OS Type"
                   />
                 </div>
               </div>
@@ -120,12 +118,12 @@ const UploadFilesPage = () => {
                 </div>
               </div>
             </div>
-
           </div>
 
           <h1 className="heading1">Upload your files here:</h1>
           <div className="heading-sub">
-            Convert your serial code into a parallel one to improve your code's performance
+            Convert your serial code into a parallel one to improve your code's
+            performance
           </div>
           <div className="code-section">
             <div className="code-editor">
