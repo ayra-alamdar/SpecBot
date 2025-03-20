@@ -11,6 +11,7 @@ const Analytics = () => {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [selectedFile, setSelectedFile] = useState("default"); // Default file selection
   const [availableFiles, setAvailableFiles] = useState([]); // Available input files for selection
+  const [currentAnalysisIndex, setCurrentAnalysisIndex] = useState(0);
   const [messages, setMessages] = useState([
     "HPC systems can perform quadrillions of calculations per second, measured in petaFLOPS.",
     "The first supercomputer, the CDC 6600 (1964), was 1,000 times faster than other computers of its time.",
@@ -87,6 +88,14 @@ const Analytics = () => {
     setSelectedFile(e.target.value);
   };
 
+  const handleNextAnalysis = () => {
+    if (currentAnalysisIndex < data.S_Analysis.length - 1) {
+      setCurrentAnalysisIndex(currentAnalysisIndex + 1);
+    } else {
+      setCurrentAnalysisIndex(0); // Reset to beginning
+    }
+  };
+
   return (
     <div>
       <NavBar />
@@ -137,15 +146,23 @@ const Analytics = () => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(data.S_Analysis[0]).map((key) => (
+                {Object.keys(data.S_Analysis[currentAnalysisIndex]).map((key) => (
                   <tr key={key}>
                     <td>{key}</td>
-                    <td>{data.S_Analysis[0][key]}</td>
-                    <td>{data.P_Analysis[0][key]}</td>
+                    <td>{data.S_Analysis[currentAnalysisIndex][key]}</td>
+                    <td>{data.P_Analysis[currentAnalysisIndex][key]}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            <div className="next-analysis-button">
+              <button 
+                onClick={handleNextAnalysis}
+                className="next-button"
+              >
+                Next Analysis
+              </button>
+            </div>
           </>
         )}
       </div>
