@@ -40,6 +40,8 @@ const UploadFilesPage = () => {
       processors_count: processorsCount,
       code: codeInput,
     };
+    //  save serial code in session storage
+    sessionStorage.setItem("serialCode", codeInput);
     axios
       .post("http://localhost:5000/upload", data)
       .then((response) => {

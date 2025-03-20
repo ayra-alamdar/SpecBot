@@ -17,13 +17,13 @@ const AboutUs = () => {
         </p>
         <h2>Our Features</h2>
         <ul>
-          <li>
-            Automated parallelization using C++, OpenMP.
-          </li>
-          <li>Enhanced Loop level performance.</li>
-          <li>Reduction of computational overhead and dependency conflicts.</li>
-          <li>Race condition prevention and cache conflict resolution.</li>
-          <li>Seamless integration as a Visual Studio Code extension.</li>
+          <li>Identifying parallelizable segments.</li>
+          <li>Examining hardware specifications.</li>
+          <li>Identifying computationally intensive code sections.</li>
+          <li>Identifying data dependencies.</li>
+          <li>Automating code parallelization.</li>
+          <li>Assessing parallelized code performance.</li>
+          <li>Displaying performance through comparison graphs.</li>
         </ul>
         <h2>Our Team</h2>
         <p>

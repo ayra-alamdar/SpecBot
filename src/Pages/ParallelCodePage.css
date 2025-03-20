@@ -172,6 +172,23 @@
   justify-content: flex-start;
 }
 
+.analytics-btn {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #007bff; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.analytics-btn:hover {
+  background-color: #0056b3; /* Darker blue */
+  transform: scale(1.05);
+}
+
 .grey-box {
   background-color: #c4d6c4;
   padding: 12px;
