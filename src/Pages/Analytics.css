@@ -1,6 +1,7 @@
 .analytics-container {
   padding: 20px;
   text-align: center;
+  background-image: url("../../public/background.png");
 }
 
 table {
