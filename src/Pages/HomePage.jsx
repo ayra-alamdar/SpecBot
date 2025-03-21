@@ -22,46 +22,47 @@ const HomePage = () => {
       <Navbar user={user} />
       <div className="content-wrapper">
         <div className="content">
-          <div className="heading-hp">
+          <h1 className="heading-hp">
             Accelerate your Code's Performance with SpecBot!
-          </div>
+          </h1>
 
-          <div className="bg-vid">
-            <video className="video-demo" controls width="100%" src="./BG.mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-
-          <p className="description">
-            Optimize your software's performance by automatically converting
-            sequential code into efficient, parallelized solutions based on your
-            hardware specifications.
-          </p>
-          {!user ? (
-            <div className="login-cred">
-              <p>Before we get started, Login with your credentials</p>
-              <button
-                className="get-started-btn"
-                onClick={() => navigate("/login")}
-              >
-                Login
-              </button>
+          <div className="hero-section">
+            <div className="hero-text">
+              <h2>
+                SpecBot's mission is to streamline the coding<br></br> process
+                by automatically converting sequential code<br></br> into
+                efficient parallel implementations to achieve HPC (High
+                Performance Computing).
+              </h2>
+              {!user ? (
+                <div className="login-cred">
+                  <button
+                    className="get-started-btn"
+                    onClick={() => navigate("/login")}
+                  >
+                    Login
+                  </button>
+                </div>
+              ) : (
+                <button
+                  className="get-started-btn"
+                  onClick={() => navigate("/upload")}
+                >
+                  Get Started
+                </button>
+              )}
             </div>
-          ) : (
-            <button
-              className="get-started-btn"
-              onClick={() => navigate("/upload")}
-            >
-              Get Started
-            </button>
-          )}
+            <div className="hero-image">
+              <img src="./Graph.png" alt="SpecBot Illustration" />
+            </div>
+          </div>
 
           <h2 className="subheading">Why use SpecBot?</h2>
           <ul className="features">
-            <li> 1. Automates code parallelization for C/C++</li>
-            <li> 2. Enhances code performance for specific hardware setups</li>
-            <li> 3. Easy integration with Visual Studio Code</li>
-            <li> 4. Works for computationally intensive tasks</li>
+            <li>Automates code parallelization for C/C++</li>
+            <li>Enhances code performance for specific hardware setups</li>
+            <li>Assesses parallelized code performance</li>
+            <li>Displays performance through comparison graphs</li>
           </ul>
 
           <div className="promo-box">
@@ -88,15 +89,6 @@ const HomePage = () => {
             >
               Your browser does not support the video tag.
             </video>
-          </div>
-
-          <h2 className="flow-heading">Our Flow Diagram</h2>
-          <div className="image-placeholder">
-            <img
-              className="flow-diagram"
-              src="./WorkFlow.png"
-              alt="Flow Diagram"
-            />
           </div>
         </div>
       </div>

@@ -9,13 +9,13 @@
   text-align: center;
   margin-top: auto;
   width: 100%; /* Ensures the footer spans the page width */
-  font-family: Georgia, serif;
+  font-family: Arial, serif;
   font-weight: bold; /* Apply bold font */
 }
 
 .footer-text p {
   font-size: 20px; /* Adjust font size */
-  font-family: Georgia, serif; /* Font family set to Georgia */
+  font-family: Arial, serif; 
   font-weight: bold; /* Ensure the text is bold */
   margin-top: 5px; /* Add spacing above the paragraph */
   margin-bottom: 0; /* Remove bottom margin if needed */
@@ -27,7 +27,9 @@
   width: 50px; /* Matching size to the login page */
   height: 50px;
   margin: 0 10px; /* Spacing between icons */
-  transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effect */
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease; /* Smooth hover effect */
 }
 
 /* Hover Effects for Social Icons */

@@ -11,6 +11,7 @@ const Analytics = () => {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [selectedFile, setSelectedFile] = useState("default"); // Default file selection
   const [availableFiles, setAvailableFiles] = useState([]); // Available input files for selection
+  const [currentAnalysisIndex, setCurrentAnalysisIndex] = useState(0);
   const [messages, setMessages] = useState([
     "HPC systems can perform quadrillions of calculations per second, measured in petaFLOPS.",
     "The first supercomputer, the CDC 6600 (1964), was 1,000 times faster than other computers of its time.",
@@ -31,21 +32,21 @@ const Analytics = () => {
     "Distributed computing projects like Folding@home leverage thousands of volunteer computers worldwide.",
     "Modern HPC systems often consume megawatts of power, enough to power thousands of homes.",
     "Parallel file systems like Lustre can achieve I/O rates of hundreds of gigabytes per second.",
-    "The energy efficiency of supercomputers is measured in FLOPS per watt on the Green500 list."
+    "The energy efficiency of supercomputers is measured in FLOPS per watt on the Green500 list.",
   ]);
 
   // Rotate through messages every 3 seconds while loading
   useEffect(() => {
     let interval = null;
-    
+
     if (loading) {
       interval = setInterval(() => {
-        setCurrentMessageIndex((prevIndex) => 
+        setCurrentMessageIndex((prevIndex) =>
           prevIndex === messages.length - 1 ? 0 : prevIndex + 1
         );
       }, 3000);
     }
-    
+
     return () => {
       if (interval) clearInterval(interval);
     };
@@ -58,18 +59,18 @@ const Analytics = () => {
       try {
         const formData = {
           P_Code: sessionStorage["ParallelCode"],
-          S_Code: sessionStorage["serialCode"]
+          S_Code: sessionStorage["serialCode"],
         };
-        
+
         const response = await axios.post("http://localhost:5000/Analysis", {
           body: formData,
           headers: {
             "Content-Type": "application/json",
           },
         });
-        
+
         setData(response.data);
-        setAvailableFiles(response.data['Input File'] || []); // Update available files
+        setAvailableFiles(response.data["Input File"] || []); // Update available files
         console.log(response.data);
       } catch (error) {
         setError(error);
@@ -87,6 +88,14 @@ const Analytics = () => {
     setSelectedFile(e.target.value);
   };
 
+  const handleNextAnalysis = () => {
+    if (currentAnalysisIndex < data.S_Analysis.length - 1) {
+      setCurrentAnalysisIndex(currentAnalysisIndex + 1);
+    } else {
+      setCurrentAnalysisIndex(0); // Reset to beginning
+    }
+  };
+
   return (
     <div>
       <NavBar />
@@ -95,14 +104,14 @@ const Analytics = () => {
           <h1>Analytics Results</h1>
           <div className="file-selection">
             <label htmlFor="fileSelect">Select Input File: </label>
-            <select 
-              id="fileSelect" 
-              value={selectedFile} 
+            <select
+              id="fileSelect"
+              value={selectedFile}
               onChange={handleFileChange}
               disabled={loading}
             >
               {availableFiles.length > 0 ? (
-                availableFiles.map(file => (
+                availableFiles.map((file) => (
                   <option key={file.id} value={file.id}>
                     {file.name}
                   </option>
@@ -127,7 +136,10 @@ const Analytics = () => {
           <div className="error-message">Error: {error.message}</div>
         ) : (
           <>
-            <h3>File: {availableFiles.find(file => file.id === selectedFile)?.name}</h3>
+            <h3>
+              File:{" "}
+              {availableFiles.find((file) => file.id === selectedFile)?.name}
+            </h3>
             <table className="results-table">
               <thead>
                 <tr>
@@ -137,15 +149,22 @@ const Analytics = () => {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(data.S_Analysis[0]).map((key) => (
-                  <tr key={key}>
-                    <td>{key}</td>
-                    <td>{data.S_Analysis[0][key]}</td>
-                    <td>{data.P_Analysis[0][key]}</td>
-                  </tr>
-                ))}
+                {Object.keys(data.S_Analysis[currentAnalysisIndex]).map(
+                  (key) => (
+                    <tr key={key}>
+                      <td>{key}</td>
+                      <td>{data.S_Analysis[currentAnalysisIndex][key]}</td>
+                      <td>{data.P_Analysis[currentAnalysisIndex][key]}</td>
+                    </tr>
+                  )
+                )}
               </tbody>
             </table>
+            <div className="next-analysis-button">
+              <button onClick={handleNextAnalysis} className="next-button">
+                Next Analysis
+              </button>
+            </div>
           </>
         )}
       </div>

@@ -7,11 +7,7 @@
 
 body {
   font-family: "Arial", sans-serif;
-  background: linear-gradient(
-    to bottom right,
-    #f5faf5,
-    #dff3e7
-  ); /* Soft gradient */
+  background: linear-gradient(to bottom right, #f5faf5, #dff3e7);
   color: #333;
   display: flex;
   flex-direction: column;
@@ -47,9 +43,9 @@ body {
 }
 
 .login-heading {
-  font-size: 24px;
-  color: #333;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: bold;
+  color: #222;
   margin-bottom: 20px;
 }
 
@@ -63,20 +59,19 @@ body {
 .login-input {
   display: block;
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  font-size: 16px;
+  font-size: 18px;
   background-color: #f9f9f9;
   margin-bottom: 15px;
   transition: all 0.3s ease;
 }
 
 .login-input:focus {
-  border-color: #4cff9d;
-  font-size: medium;
-  background-color: #ffffff;
-  box-shadow: 0 0 8px rgba(93, 231, 162, 0.4);
+  border-color: #26b1a5;
+  box-shadow: 0 0 10px rgba(38, 177, 165, 0.5);
+  transform: scale(1.02);
   outline: none;
 }
 
@@ -84,16 +79,14 @@ body {
 .error-message {
   color: #ff4d4d;
   font-size: 19px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font: bold;
-  margin-bottom: 15px;
   font-weight: 500;
+  margin-bottom: 15px;
 }
 
 /* Buttons */
 .login-submit-btn {
-  background-color: #2c9e4e;
-  color: white;
+  background-color: #94f2ce;
+  color: #282b29;
   border: none;
   padding: 12px 20px;
   margin-top: 15px;
@@ -108,8 +101,9 @@ body {
 }
 
 .login-submit-btn:hover {
-  background-color: #26b1a5;
-  transform: scale(1.05);
+  background-color: #77e1a3;
+  transform: scale(1.08);
+  box-shadow: 0px 4px 12px rgba(0, 150, 80, 0.3);
 }
 
 /* Social Icons */
@@ -124,16 +118,14 @@ body {
   width: 70px;
   height: 70px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .social-icon:hover {
-  transform: scale(1.1);
-}
-
-.social-icon img {
-  width: 100%;
-  border-radius: 50%;
+  transform: scale(1.15);
+  filter: brightness(1.2);
 }
 
 /* Toggle Link */
@@ -141,17 +133,12 @@ body {
   color: #2fafa9;
   cursor: pointer;
   font-weight: bold;
+  font-size: 18px;
   transition: color 0.3s ease;
 }
 
 .toggle-link:hover {
   color: #29e952;
-}
-
-.signup-text {
-  margin-top: 20px;
-  font-size: 16px;
-  color: #777;
 }
 
 /* Footer Styling */

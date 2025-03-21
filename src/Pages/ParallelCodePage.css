@@ -4,18 +4,46 @@
   align-items: center;
   gap: 15px;
   padding: 15px;
-  background: #f9f9f9;
+  background: #d4f8e3; /* Changed from #f9f9f9 to #d4f8e3 as requested */
   border-radius: 8px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
 
-.filter-section select,
-.filter-section button {
+.filter-section select {
   padding: 8px;
   font-size: 16px;
 }
 
+/* Updated button styling to match the try-free-btn style */
+.filter-section button,
+.analytics-btn {
+  font-family: "Arial", sans-serif;
+  background-color: #94f2ce;
+  color: #282b29;
+  border: none;
+  padding: 12px 24px; /* Slightly smaller padding to fit in filter section */
+  cursor: pointer;
+  font-size: 16px; /* Slightly smaller than try-free-btn */
+  font-weight: 600;
+  border-radius: 8px;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.filter-section button:hover,
+.analytics-btn:hover {
+  background-color: #77e1a3;
+  transform: scale(1.05);
+}
+
+/* Remove the old analytics-btn styling to prevent conflicts */
+.analytics-btn {
+  /* Inherits the styles from the button class above */
+}
+
+/* Rest of your CSS remains the same */
 .content-container {
   display: flex;
   flex-direction: row;
@@ -172,29 +200,12 @@
   justify-content: flex-start;
 }
 
-.analytics-btn {
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #007bff; /* Blue color */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.analytics-btn:hover {
-  background-color: #0056b3; /* Darker blue */
-  transform: scale(1.05);
-}
-
 .grey-box {
   background-color: #c4d6c4;
   padding: 12px;
   width: 300px;
   border-radius: 8px;
-  font-family: "Georgia", serif;
+  font-family: Arial, serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Soft shadow */
 }
@@ -205,7 +216,7 @@
   border-radius: 8px;
   width: 98%;
   text-align: left;
-  font-family: "Georgia", serif;
+  font-family: Arial, serif;
   font-weight: 500;
 }
 
@@ -269,7 +280,7 @@ textarea {
   overflow-y: auto; /* Just in case */
 }
 
-/* Submit Button */
+/* Configure Button */
 .configure-btn {
   font-family: "Arial", sans-serif;
   background-color: #000000;

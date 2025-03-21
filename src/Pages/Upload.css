@@ -1,8 +1,9 @@
 .upload-container {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f9fafb; /* Light background */
+  font-family: Arial, sans-serif;
+  background-color: #f9fafb;
   margin: 0;
   padding: 0;
+  color: #333; /* Ensuring all non-box text is #333 */
 }
 
 /* Main Page Container */
@@ -26,22 +27,25 @@
 }
 
 /* Heading Styles */
+.heading-u,
+.heading1,
+.heading-sub {
+  color: #333; /* Ensuring all non-box text is #333 */
+}
+
 .heading-u {
-  color: #2d5939;
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
 .heading1 {
-  color: #2d5939;
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
 .heading-sub {
-  color: #113d1c;
   font-size: 1.8rem;
   font-weight: 500;
   margin-bottom: 20px;
@@ -68,13 +72,18 @@
 .label {
   font-size: 1rem;
   font-weight: bold;
-  color: #ffffff;
-  background-color: #2d5939;
+  background-color: #94f2ce;
+  color: #282b29;
   padding: 12px 18px;
   border-radius: 8px;
   text-align: center;
   width: 220px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.label:hover {
+  transform: scale(1.05);
 }
 
 /* Grey Box and White Box */
@@ -89,7 +98,7 @@
   width: 300px;
   border-radius: 8px;
   font-family: "Georgia", serif;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .white-box {
@@ -98,36 +107,36 @@
   border-radius: 8px;
   width: 98%;
   text-align: left;
-  font-family: "Georgia", serif;
+  font-family: Arial, sans-serif;
   font-weight: 500;
 }
 
 /* Auto Retrieve Button */
 .auto-retrieve-btn {
-  font-family: Georgia, serif;
-  background-color: #387a4a;
-  color: white;
+  background-color: #94f2ce;
+  color: #282b29;
   padding: 12px 40px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   font-size: large;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
 }
 
 .auto-retrieve-btn:hover {
-  background-color: #4f855a;
-  transform: scale(1.05); /* Slight hover effect */
+  background-color: #77e1a3;
+  transform: scale(1.05);
 }
 
 .auto-retrieve-btn:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(45, 89, 57, 0.6);
 }
+
 /* Code Section */
 .code-section {
   display: flex;
@@ -162,7 +171,7 @@
   border: none;
   resize: none;
   width: 100%;
-  height: auto; /* Allow height to adjust dynamically */
+  height: auto;
   padding: 10px;
   background-color: #ffffff;
   font-family: "Courier New", monospace;
@@ -174,19 +183,13 @@
 
 .code-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(45, 89, 57, 0.6); /* Focused input border */
-}
-
-/* Ensure the grey space issue is resolved */
-textarea {
-  min-height: 50px; /* Ensure there is no extra space beneath the content */
+  box-shadow: 0 0 0 2px rgba(45, 89, 57, 0.6);
 }
 
 /* Submit Button */
 .upload-btn {
-  font-family: "Arial", sans-serif;
-  background-color: #387a4a; /* Dark Green */
-  color: white;
+  background-color: #94f2ce;
+  color: #282b29;
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -194,28 +197,19 @@ textarea {
   font-weight: 600;
   margin-top: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition:
     background-color 0.3s ease,
     transform 0.3s ease;
-  font-size: 1rem; /* Slightly larger for better readability */
+  font-size: 1rem;
 }
 
-/* Hover effect */
 .upload-btn:hover {
-  background-color: #4f855a; /* Lighter green */
-  transform: scale(1.05); /* Slightly enlarge button on hover */
+  background-color: #77e1a3;
+  transform: scale(1.05);
 }
 
-/* Focus effect */
 .upload-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(45, 89, 57, 0.6); /* Green focus ring */
-}
-
-/* Optional: Add a container for centering if needed */
-.upload-btn-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px; /* Optional, adjust as needed */
+  box-shadow: 0 0 0 2px rgba(45, 89, 57, 0.6);
 }
