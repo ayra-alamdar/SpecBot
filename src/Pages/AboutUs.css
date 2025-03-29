@@ -107,7 +107,7 @@
   background-color: #d4f8e3;
   padding: 20px;
   border-radius: 10px;
-  width: 200px;
+  width: 250px;
   border: 2px solid transparent;
   transition:
     background-color 0.3s ease,
@@ -123,11 +123,11 @@
 
 .team-avatar {
   width: 150px;
-  height: 200px; /* More portrait-like dimensions */
+  height: 200px; 
   object-fit: cover;
   margin: 0 auto 15px auto;
   border: 3px solid #77e1a3;
-  border-radius: 10px; /* Less oval, more portrait-like */
+  border-radius: 10px; 
 }
 
 .team-name {
@@ -139,6 +139,8 @@
 .team-id {
   font-size: 16px;
   color: #444;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .supervisor {

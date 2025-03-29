@@ -62,19 +62,19 @@ const AboutUs = () => {
               className="team-avatar"
             />
             <div className="team-name">Muhammad Abdur Rafey</div>
-            <div className="team-id">21I-0705</div>
+            <div className="team-id">m.a.rafey1215@gmail.com</div>
           </div>
 
           <div className="team-member">
             <img src="/Ayra.png" alt="Ayra Alamdar" className="team-avatar" />
             <div className="team-name">Ayra Alamdar</div>
-            <div className="team-id">21I-2968</div>
+            <div className="team-id">ayraalamdar309@gmail.com</div>
           </div>
 
           <div className="team-member">
             <img src="/Husnain.png" alt="Husnain Ali" className="team-avatar" />
             <div className="team-name">Husnain Ali</div>
-            <div className="team-id">21I-0542</div>
+            <div className="team-id">husnainali2721@gmail.com</div>
           </div>
         </div>
 
