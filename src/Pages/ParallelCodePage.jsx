@@ -3,7 +3,7 @@ import Navbar from "./NavBar";
 import Footer from "./Footer";
 import { useLocation } from "react-router-dom";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { ghcolors } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./ParallelCodePage.css";
 import { FaArrowRight } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -55,15 +55,26 @@ const ParallelCodePage = ({ user }) => {
     setCodeInput((prevCode) => {
       const originalLoop = loopObj.Loop;
       const parallelizedLoop = loopObj.Parallelized_Loop;
+      const tiledLoop = loopObj.Tiled_Loop;
 
-      if (parallelizedLoop === "Not Parallelized") {
-        Swal.fire({
-          title: "No Parallel Version!",
-          text: "This loop doesn't have a parallelized version",
-          icon: "warning",
-          confirmButtonText: "OK",
-        });
-        return prevCode;
+      // Determine which version to use based on availability
+      let replacementLoop = parallelizedLoop;
+      
+      // Check if we have a valid replacement
+      if (replacementLoop === "Not Parallelized" || replacementLoop === "Not Parallelizable") {
+        if (tiledLoop !== "Not Tiled") {
+          // Use tiled loop if parallelized is not available
+          replacementLoop = tiledLoop;
+        } else {
+          // No valid replacement exists
+          Swal.fire({
+            title: "No Optimized Version!",
+            text: "This loop doesn't have a parallelized or tiled version",
+            icon: "warning",
+            confirmButtonText: "OK",
+          });
+          return prevCode;
+        }
       }
 
       const normalize = (code) =>
@@ -87,18 +98,12 @@ const ParallelCodePage = ({ user }) => {
         // console.log("✅ Original Loop Found in Code");
 
         const newCode = prevCode.replace(checkRegex, (match) => {
-          // console.log(
-          //   "🔄 Replacing:\n",
-          //   match,
-          //   "\n➡️ With:\n",
-          //   parallelizedLoop
-          // );
-          return parallelizedLoop; // Replace with parallelized loop
+          return replacementLoop; // Replace with chosen optimized loop
         });
 
         Swal.fire({
           title: "Loop Replaced!",
-          text: "Parallelized version inserted successfully 🎉",
+          text: "Optimized version inserted successfully 🎉",
           icon: "success",
           confirmButtonText: "OK",
         });
@@ -167,14 +172,14 @@ const ParallelCodePage = ({ user }) => {
                 <div className="loop-content">
                   <div className="code-section original">
                     <h3>Original Loop</h3>
-                    <SyntaxHighlighter language="cpp" style={vscDarkPlus}>
+                    <SyntaxHighlighter language="cpp" style={ghcolors}>
                       {loop.Loop}
                     </SyntaxHighlighter>
                   </div>
-                  {loop.Parallelized_Loop !== "Not Parallelized" && (
+                  {loop.Parallelized_Loop !== "Not Parallelizable" && (
                     <div className="code-section parallelized">
                       <h3>Parallelized Loop</h3>
-                      <SyntaxHighlighter language="cpp" style={vscDarkPlus}>
+                      <SyntaxHighlighter language="cpp" style={ghcolors}>
                         {loop.Parallelized_Loop}
                       </SyntaxHighlighter>
                     </div>
@@ -182,7 +187,7 @@ const ParallelCodePage = ({ user }) => {
                   {loop.Tiled_Loop !== "Not Tiled" && (
                     <div className="code-section tiled">
                       <h3>Tiled Loop</h3>
-                      <SyntaxHighlighter language="cpp" style={vscDarkPlus}>
+                      <SyntaxHighlighter language="cpp" style={ghcolors}>
                         {loop.Tiled_Loop}
                       </SyntaxHighlighter>
                     </div>
@@ -201,7 +206,7 @@ const ParallelCodePage = ({ user }) => {
         </div>
         <div className="completed-code-section">
           <h2> Serial Code</h2>
-          <SyntaxHighlighter language="cpp" style={vscDarkPlus}>
+          <SyntaxHighlighter language="cpp" style={ghcolors}>
             {codeInput}
           </SyntaxHighlighter>
         </div>
