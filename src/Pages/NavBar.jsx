@@ -20,6 +20,9 @@ const NavBar = ({ user }) => {
         <button className="nav-btn" onClick={() => navigate("/about")}>
           About Us
         </button>
+        <button className="nav-btn" onClick={() => navigate("/benchmarks")}>
+          Benchmarks
+        </button>
         {user ? (
           // Display the avatar when user is logged in
           <div className="avatar" title={user.email}>

@@ -7,6 +7,7 @@ import Login from "./Pages/Login"; // Import the Login component
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AboutUs from "./Pages/AboutUs";
 import Analytics from "./Pages/Analytics";
+import Benchmarks from "./Pages/Benchmarks";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/parallel-code" element={<ParallelCodePage />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/benchmarks" element={<Benchmarks />} />
         </Routes>
       </Router>
     </div>
